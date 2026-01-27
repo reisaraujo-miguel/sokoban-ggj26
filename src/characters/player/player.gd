@@ -11,7 +11,8 @@ enum State { IDLE, MOVING }
 func _physics_process(_delta: float) -> void:
 	if curr_state == State.IDLE:
 		var direction: Vector2 = Vector2(
-			Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down")
+			Input.get_axis("ui_left", "ui_right"),
+			Input.get_axis("ui_up", "ui_down"),
 		)
 
 		if direction.x:
@@ -27,10 +28,7 @@ func move_player(direction: Vector2) -> void:
 
 	@warning_ignore("return_value_discarded")
 	(
-		tween
-		. tween_property(self, "position", direction * MOVEMENT_DISTANCE, MOVEMENT_DURATION)
-		. as_relative()
-		. set_trans(Tween.TRANS_SINE)
+		tween.tween_property(self, "position", direction * MOVEMENT_DISTANCE, MOVEMENT_DURATION).as_relative().set_trans(Tween.TRANS_SINE)
 	)
 
 	@warning_ignore("return_value_discarded")
