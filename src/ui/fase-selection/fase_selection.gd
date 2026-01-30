@@ -1,13 +1,13 @@
 extends Control
 
-var fase_node: PackedScene = preload("res://src/gerente_fase/gerente_fase.tscn")
+const fase_manager_node: PackedScene = preload("res://src/gerente_fase/gerente_fase.tscn")
 
 
 func switch_to_fase(fase_number: int) -> void:
-	var fase: FaseManager = fase_node.instantiate()
-	fase.numero_fase = fase_number
-	if get_tree().change_scene_to_node(fase) != OK:
-		push_error("Error chaging scene to fase" + fase.to_string())
+	var fase_manager: FaseManager = fase_manager_node.instantiate()
+	fase_manager.numero_fase = fase_number
+	if get_tree().change_scene_to_node(fase_manager) != OK:
+		push_error("Error chaging scene to fase" + fase_manager.to_string())
 
 
 func _on_fase_1_pressed() -> void:

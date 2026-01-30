@@ -6,9 +6,9 @@ extends Node2D
 var tile_size: int = 64
 var offset: int = 32
 
-var mask_scene: PackedScene = preload("res://src/objects/props/mask/mask.tscn")
+const mask_scene: PackedScene = preload("res://src/objects/props/mask/mask.tscn")
 
-var scene_map: Dictionary = {
+const scene_map: Dictionary = {
 	"J": { "scene": preload("res://src/objects/player/player.tscn") },
 	"W": { "scene": preload("res://src/objects/props/wall/bloqueio.tscn") },
 	"C": { "scene": preload("res://src/objects/props/caixa/caixa.tscn") },

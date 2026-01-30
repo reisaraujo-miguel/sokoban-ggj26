@@ -1,6 +1,6 @@
 extends Control
 
-var fase_selection: PackedScene = preload("res://src/ui/fase-selection/fase_selection.tscn")
+const fase_selection: PackedScene = preload("res://src/ui/fase-selection/fase_selection.tscn")
 
 
 func _on_exit_btn_pressed() -> void:
