@@ -6,14 +6,16 @@ extends Node2D
 var tile_size: int = 64
 var offset: int = 32
 
+var mask_scene: PackedScene = preload("res://src/objects/props/mask/mask.tscn")
+
 var scene_map: Dictionary = {
 	"J": { "scene": preload("res://src/objects/player/player.tscn") },
 	"W": { "scene": preload("res://src/objects/props/wall/bloqueio.tscn") },
 	"C": { "scene": preload("res://src/objects/props/caixa/caixa.tscn") },
-	"MR": { "scene": preload("res://src/objects/props/mask/mask.tscn"), "color": Game.MaskColor.RED },
-	"MG": { "scene": preload("res://src/objects/props/mask/mask.tscn"), "color": Game.MaskColor.GREEN },
-	"MB": { "scene": preload("res://src/objects/props/mask/mask.tscn"), "color": Game.MaskColor.BLUE },
-	"MY": { "scene": preload("res://src/objects/props/mask/mask.tscn"), "color": Game.MaskColor.YELLOW },
+	"MR": { "scene": mask_scene, "color": Game.MaskColor.RED },
+	"MG": { "scene": mask_scene, "color": Game.MaskColor.GREEN },
+	"MB": { "scene": mask_scene, "color": Game.MaskColor.BLUE },
+	"MY": { "scene": mask_scene, "color": Game.MaskColor.YELLOW },
 }
 
 
