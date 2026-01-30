@@ -1,7 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddsp1thn0m1lx"]
+[gd_scene format=3 uid="uid://ddsp1thn0m1lx"]
 
 [ext_resource type="Script" uid="uid://be7bkltdxjp0h" path="res://src/objects/gerente_fase/gerente_fase.gd" id="1_ulhbh"]
 
-[node name="gerente_fase" type="Node2D"]
-position = Vector2(-1, 0)
+[node name="gerente_fase" type="Node2D" unique_id=2120918560]
 script = ExtResource("1_ulhbh")
