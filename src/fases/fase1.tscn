@@ -5,4 +5,4 @@
 [node name="Game" type="Node2D"]
 
 [node name="gerente_fase" parent="." instance=ExtResource("1_psdsg")]
-numero_fase = 2
+numero_fase = 1
