@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pg3mufyx6xpt"]
 
-[ext_resource type="Texture2D" uid="uid://ct3hg11xnpu4u" path="res://assets/placeholders/f.png" id="1_0ihms"]
 [ext_resource type="Script" uid="uid://dqf1ortuuedyj" path="res://src/ui/fase-selection/fase_selection.gd" id="1_rier4"]
+[ext_resource type="Texture2D" uid="uid://kgpk41rq76f5" path="res://assets/Free Industrial Zone Tileset/1 Tiles/IndustrialTile_20.png" id="2_s7sdb"]
 [ext_resource type="StyleBox" uid="uid://dctct65881qyo" path="res://src/ui/resources/button_normal_style.tres" id="3_s7sdb"]
 [ext_resource type="StyleBox" uid="uid://csbv4mrlhdog3" path="res://src/ui/resources/button_hover_style.tres" id="4_3l4xd"]
 
@@ -35,11 +35,13 @@ size_flags_vertical = 3
 columns = 2
 
 [node name="Fase1" type="TextureButton" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=815207610]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 action_mode = 0
-texture_normal = ExtResource("1_0ihms")
+texture_normal = ExtResource("2_s7sdb")
+stretch_mode = 4
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/Fase1" unique_id=1467255543]
 layout_mode = 1
@@ -54,11 +56,16 @@ offset_right = 24.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 8
 text = "Fase 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Fase2" type="TextureButton" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=2129276241]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_0ihms")
+texture_normal = ExtResource("2_s7sdb")
+stretch_mode = 4
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/Fase2" unique_id=577706477]
 layout_mode = 1
@@ -73,7 +80,10 @@ offset_right = 24.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 8
 text = "Fase 2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2122197822]
 layout_mode = 2
