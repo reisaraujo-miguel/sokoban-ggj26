@@ -58,6 +58,11 @@ layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=884029957]
+layout_mode = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
 [node name="Resume" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=900817515]
 layout_mode = 2
 action_mode = 0

@@ -8,4 +8,5 @@ func _on_body_entered(body: Node2D) -> void:
 	if fase_manager == null:
 		push_error("FaseManager não encontrado na cena atual")
 		return
-	fase_manager.load_next()
+	await get_tree().create_timer(0.5).timeout
+	fase_manager.succes()

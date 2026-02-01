@@ -21,10 +21,16 @@ const scene_map: Dictionary = {
 }
 
 @onready var pause_menu: Control = $ui/PauseMenu
+@onready var success_menu: Control = $ui/SuccessMenu
 
 
 func _ready() -> void:
 	load_level(numero_fase)
+
+
+func succes() -> void:
+	get_tree().paused = true
+	success_menu.visible = true
 
 
 func load_level(level_number: int) -> void:
@@ -101,16 +107,20 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		get_tree().paused = true
 
 
+func change_to_scene_path(path: String) -> void:
+	var packed_scene: PackedScene = load(path)
+	get_tree().paused = false
+	if get_tree().change_scene_to_packed(packed_scene) != OK:
+		push_error("error changing scene")
+
+
 func _on_pause_menu_resume_game() -> void:
 	pause_menu.visible = false
 	get_tree().paused = false
 
 
 func _on_pause_menu_quit_to_main_menu() -> void:
-	var main_menu_scene: PackedScene = load("res://src/ui/start-menu/start-menu.tscn")
-	get_tree().paused = false
-	if get_tree().change_scene_to_packed(main_menu_scene) != OK:
-		push_error("error changing scene")
+	change_to_scene_path("res://src/ui/start-menu/start-menu.tscn")
 
 
 func _on_pause_menu_reload_level() -> void:
@@ -120,7 +130,23 @@ func _on_pause_menu_reload_level() -> void:
 
 
 func _on_pause_menu_quit_to_level_selection() -> void:
-	var level_selection_scene: PackedScene = load("res://src/ui/fase-selection/fase_selection.tscn")
+	change_to_scene_path("res://src/ui/fase-selection/fase_selection.tscn")
+
+
+func _on_success_menu_goto_level_selection() -> void:
+	change_to_scene_path("res://src/ui/fase-selection/fase_selection.tscn")
+
+
+func _on_success_menu_goto_next_level() -> void:
+	if FileAccess.file_exists("res://data/fases/fase" + str(numero_fase + 1) + ".json"):
+		get_tree().paused = false
+		success_menu.visible = false
+		load_next()
+	else:
+		change_to_scene_path("res://src/ui/fase-selection/fase_selection.tscn")
+
+
+func _on_success_menu_reload_level() -> void:
+	load_level(numero_fase)
+	success_menu.visible = false
 	get_tree().paused = false
-	if get_tree().change_scene_to_packed(level_selection_scene) != OK:
-		push_error("error changing scene")

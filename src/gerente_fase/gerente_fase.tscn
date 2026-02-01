@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://be7bkltdxjp0h" path="res://src/gerente_fase/gerente_fase.gd" id="1_ulhbh"]
 [ext_resource type="PackedScene" uid="uid://gwnq5b2x3p82" path="res://src/ui/pause-menu/pause_menu.tscn" id="2_e05qi"]
+[ext_resource type="PackedScene" uid="uid://cs6gwkpepcuob" path="res://src/ui/success-menu/success_menu.tscn" id="3_7lr0b"]
 
 [node name="gerente_fase" type="Node2D" unique_id=934152009]
 script = ExtResource("1_ulhbh")
@@ -18,7 +19,13 @@ anchor_bottom = 0.5
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
+[node name="SuccessMenu" parent="ui" unique_id=1250760166 instance=ExtResource("3_7lr0b")]
+visible = false
+
 [connection signal="QuitToLevelSelection" from="ui/PauseMenu" to="." method="_on_pause_menu_quit_to_level_selection"]
 [connection signal="QuitToMainMenu" from="ui/PauseMenu" to="." method="_on_pause_menu_quit_to_main_menu"]
 [connection signal="ReloadLevel" from="ui/PauseMenu" to="." method="_on_pause_menu_reload_level"]
 [connection signal="ResumeGame" from="ui/PauseMenu" to="." method="_on_pause_menu_resume_game"]
+[connection signal="GotoLevelSelection" from="ui/SuccessMenu" to="." method="_on_success_menu_goto_level_selection"]
+[connection signal="GotoNextLevel" from="ui/SuccessMenu" to="." method="_on_success_menu_goto_next_level"]
+[connection signal="ReloadLevel" from="ui/SuccessMenu" to="." method="_on_success_menu_reload_level"]
