@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://gwnq5b2x3p82"]
+
+[ext_resource type="Script" uid="uid://k6gvdg0odwhf" path="res://src/ui/pause-menu/pause_menu.gd" id="1_infvs"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_infvs"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="InputEventKey" id="InputEventKey_ugl0e"]
+device = -1
+keycode = 80
+unicode = 112
+
+[sub_resource type="Shortcut" id="Shortcut_dvt05"]
+events = [SubResource("InputEventKey_infvs"), SubResource("InputEventKey_ugl0e")]
+
+[node name="PauseMenu" type="Control" unique_id=381341788]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_infvs")
+
+[node name="Panel" type="Panel" parent="." unique_id=1779551756]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -82.0
+offset_right = 82.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1422333737]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1579479598]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Resume" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=900817515]
+layout_mode = 2
+action_mode = 0
+shortcut = SubResource("Shortcut_dvt05")
+text = "Resume"
+
+[node name="Reload" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=2099793570]
+layout_mode = 2
+action_mode = 0
+text = "Reload Level"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=311206487]
+layout_mode = 2
+
+[node name="Volume" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1906432534]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer" unique_id=585170093]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="LevelSelection" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1971568722]
+layout_mode = 2
+action_mode = 0
+text = "Quit to Level Selection"
+
+[node name="Quit" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=928565299]
+layout_mode = 2
+action_mode = 0
+text = "Quit to Main Menu"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Reload" to="." method="_on_reload_pressed"]
+[connection signal="drag_ended" from="Panel/MarginContainer/VBoxContainer/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_drag_ended"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/LevelSelection" to="." method="_on_level_selection_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
