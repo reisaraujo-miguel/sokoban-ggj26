@@ -4,7 +4,10 @@ extends MovableObject2D
 @export var equipped_mask: Game.MaskColor = Game.MaskColor.NO_COLOR
 
 @onready var label: Label = $Label
-
+@onready var aka = $Aka
+@onready var ao = $Ao
+@onready var kiiroi = $Kiiroi
+@onready var midori = $Midori
 
 func _ready() -> void:
 	label.text = Game.Masks.find_key(equipped_mask)
@@ -25,7 +28,23 @@ func _physics_process(_delta: float) -> void:
 func equip_new_mask(color: Game.MaskColor) -> void:
 	equipped_mask = color
 	label.text = Game.Masks.find_key(equipped_mask)
-
+	aka.visible = false
+	ao.visible = false
+	kiiroi.visible = false
+	midori.visible = false
+	
+	match equipped_mask:
+		Game.MaskColor.RED:
+			aka.visible = true
+		Game.MaskColor.BLUE:
+			ao.visible = true
+		Game.MaskColor.YELLOW:
+			kiiroi.visible = true
+		Game.MaskColor.GREEN:
+			midori.visible = true
+		Game.MaskColor.NO_COLOR:
+			pass
+	
 
 func can_move_to(direction: Vector2, ray: RayCast2D) -> bool:
 	if not ray.is_colliding():

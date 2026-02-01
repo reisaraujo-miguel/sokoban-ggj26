@@ -53,7 +53,7 @@ func load_next() -> void:
 
 func clear_current_map() -> void:
 	for child: Node in get_children():
-		if child is CanvasLayer:
+		if child is CanvasLayer or child is TileMapLayer:
 			continue
 		child.queue_free()
 
