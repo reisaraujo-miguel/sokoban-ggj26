@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://iyto7vy3t4vu"]
+[gd_scene load_steps=5 format=3 uid="uid://iyto7vy3t4vu"]
 
 [ext_resource type="Script" uid="uid://cg2x1b33sdavc" path="res://src/objects/player/player.gd" id="1_bxhu7"]
 [ext_resource type="Texture2D" uid="uid://3sp0ractpnii" path="res://assets/placeholders/player_marx_placeholder.png" id="2_7nd6e"]
@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r1iw"]
 size = Vector2(62, 62)
 
-[node name="Player" type="AnimatableBody2D" unique_id=265606514 node_paths=PackedStringArray("RayUP", "RayDown", "RayLeft", "RayRight")]
+[node name="Player" type="AnimatableBody2D" node_paths=PackedStringArray("RayUP", "RayDown", "RayLeft", "RayRight")]
 physics_material_override = SubResource("PhysicsMaterial_hdm51")
 script = ExtResource("1_bxhu7")
 RayUP = NodePath("RayUp")
@@ -17,36 +17,36 @@ RayLeft = NodePath("RayLeft")
 RayRight = NodePath("RayRight")
 metadata/_custom_type_script = "uid://cg2x1b33sdavc"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=129878937]
+[node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=92725933]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7nd6e")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1445255184]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1r1iw")
 
-[node name="RayUp" type="RayCast2D" parent="." unique_id=785662659]
+[node name="RayUp" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(0, -40)
 collision_mask = 3
 
-[node name="RayDown" type="RayCast2D" parent="." unique_id=1317153643]
+[node name="RayDown" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(0, 40)
 collision_mask = 3
 
-[node name="RayLeft" type="RayCast2D" parent="." unique_id=2085106451]
+[node name="RayLeft" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(-40, 0)
 collision_mask = 3
 
-[node name="RayRight" type="RayCast2D" parent="." unique_id=1250074785]
+[node name="RayRight" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(40, 0)
 collision_mask = 3
 
-[node name="Label" type="Label" parent="." unique_id=1186310455]
+[node name="Label" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

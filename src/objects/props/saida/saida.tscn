@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlq65s75e47to"]
+
+[ext_resource type="Script" uid="uid://behps5b0ee6ni" path="res://src/objects/props/saida/saida.gd" id="1_r7p4f"]
+[ext_resource type="Texture2D" uid="uid://co4q1uciwn8w7" path="res://assets/placeholders/saida.png" id="2_p2vn4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f128c"]
+size = Vector2(64, 64)
+
+[node name="saida" type="Area2D"]
+script = ExtResource("1_r7p4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f128c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_p2vn4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
