@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cs6gwkpepcuob"]
 
 [ext_resource type="Script" uid="uid://c3odcaqys2r4j" path="res://src/ui/success-menu/success_menu.gd" id="1_rmubw"]
+[ext_resource type="StyleBox" uid="uid://chb5rvlurymvo" path="res://src/ui/resources/style_box_flat.tres" id="2_4dhb2"]
+[ext_resource type="StyleBox" uid="uid://dctct65881qyo" path="res://src/ui/resources/button_normal_style.tres" id="3_mscal"]
+[ext_resource type="StyleBox" uid="uid://csbv4mrlhdog3" path="res://src/ui/resources/button_hover_style.tres" id="4_2fvnh"]
 
 [node name="SuccessMenu" type="Control" unique_id=1250760166]
 process_mode = 2
@@ -13,7 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_rmubw")
 
 [node name="Panel" type="Panel" parent="." unique_id=2023927671]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(300, 264)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,6 +29,7 @@ offset_right = 82.0
 offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_4dhb2")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1240380511]
 layout_mode = 1
@@ -51,18 +55,24 @@ horizontal_alignment = 1
 
 [node name="NextLevel" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=584611983]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("3_mscal")
+theme_override_styles/hover = ExtResource("4_2fvnh")
 action_mode = 0
 text = "Next Level"
 
 [node name="Reload" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=81585399]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("3_mscal")
+theme_override_styles/hover = ExtResource("4_2fvnh")
 action_mode = 0
 text = "Try Again"
 
 [node name="LevelSelection" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=2084389539]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("3_mscal")
+theme_override_styles/hover = ExtResource("4_2fvnh")
 action_mode = 0
-text = "Go to Level Selection"
+text = "Level Selection"
 
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Reload" to="." method="_on_reload_pressed"]

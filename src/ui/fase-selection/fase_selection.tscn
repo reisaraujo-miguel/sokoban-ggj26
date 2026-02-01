@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://ct3hg11xnpu4u" path="res://assets/placeholders/f.png" id="1_0ihms"]
 [ext_resource type="Script" uid="uid://dqf1ortuuedyj" path="res://src/ui/fase-selection/fase_selection.gd" id="1_rier4"]
+[ext_resource type="StyleBox" uid="uid://dctct65881qyo" path="res://src/ui/resources/button_normal_style.tres" id="3_s7sdb"]
+[ext_resource type="StyleBox" uid="uid://csbv4mrlhdog3" path="res://src/ui/resources/button_hover_style.tres" id="4_3l4xd"]
 
 [node name="FaseSelection" type="Control" unique_id=517806460]
 layout_mode = 3
@@ -77,7 +79,9 @@ text = "Fase 2"
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-text = "Main Menu"
+theme_override_styles/normal = ExtResource("3_s7sdb")
+theme_override_styles/hover = ExtResource("4_3l4xd")
+text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Fase1" to="." method="_on_fase_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Fase2" to="." method="_on_fase_2_pressed"]
