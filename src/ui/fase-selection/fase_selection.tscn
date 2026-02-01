@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://pg3mufyx6xpt"]
+[gd_scene load_steps=3 format=3 uid="uid://pg3mufyx6xpt"]
 
 [ext_resource type="Texture2D" uid="uid://ct3hg11xnpu4u" path="res://assets/placeholders/f.png" id="1_0ihms"]
 [ext_resource type="Script" uid="uid://dqf1ortuuedyj" path="res://src/ui/fase-selection/fase_selection.gd" id="1_rier4"]
 
-[node name="FaseSelection" type="Control" unique_id=1424556920]
+[node name="FaseSelection" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rier4")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1503562316]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,18 +24,18 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer" unique_id=2090881410]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="Fase1" type="TextureButton" parent="MarginContainer/GridContainer" unique_id=81841332]
+[node name="Fase1" type="TextureButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 action_mode = 0
 texture_normal = ExtResource("1_0ihms")
 
-[node name="Label" type="Label" parent="MarginContainer/GridContainer/Fase1" unique_id=62332319]
+[node name="Label" type="Label" parent="MarginContainer/GridContainer/Fase1"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,11 +50,11 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Fase 1"
 
-[node name="Fase2" type="TextureButton" parent="MarginContainer/GridContainer" unique_id=211949283]
+[node name="Fase2" type="TextureButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("1_0ihms")
 
-[node name="Label" type="Label" parent="MarginContainer/GridContainer/Fase2" unique_id=798610535]
+[node name="Label" type="Label" parent="MarginContainer/GridContainer/Fase2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

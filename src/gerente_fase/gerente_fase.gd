@@ -1,5 +1,6 @@
-class_name FaseManager
 extends Node2D
+
+class_name FaseManager
 
 @export var numero_fase: int = 1
 
@@ -16,14 +17,23 @@ const scene_map: Dictionary = {
 	"MG": { "scene": mask_scene, "color": Game.MaskColor.GREEN },
 	"MB": { "scene": mask_scene, "color": Game.MaskColor.BLUE },
 	"MY": { "scene": mask_scene, "color": Game.MaskColor.YELLOW },
+	"S": { "scene": preload("res://src/objects/props/saida/saida.tscn"), "saida": true },
 }
 
-
 func _ready() -> void:
-	var data: Dictionary = load_json("res://data/fases/fase" + str(numero_fase) + ".json")
-	spawn_from_map(data)
+	var data: = load_json("res://data/fases/fase" + str(numero_fase) + ".json")
+	spawn_from_map(data["dados"])
 
+func load_next() -> void:
+	numero_fase += 1
+	clear_current_map()
+	var data := load_json("res://data/fases/fase" + str(numero_fase) + ".json")
+	spawn_from_map(data["dados"])
 
+func clear_current_map() -> void:
+	for child in get_children():
+		child.queue_free()
+	
 func load_json(path: String) -> Dictionary:
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 	if file == null:
@@ -38,9 +48,8 @@ func load_json(path: String) -> Dictionary:
 		return { }
 	return parsed
 
-
-func spawn_from_map(data: Dictionary) -> void:
-	for key: String in data.keys():
+func spawn_from_map(data) -> void:
+	for key in data.keys():
 		if not scene_map.has(key):
 			push_warning("Sem scene mapeada para: " + key)
 			continue
@@ -57,7 +66,6 @@ func spawn_from_map(data: Dictionary) -> void:
 				node.color = config["color"]
 
 			add_child(node)
-
 
 func grid_to_world(grid_pos: Array) -> Vector2:
 	@warning_ignore("unsafe_call_argument")
