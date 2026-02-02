@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6no43g385tg6"]
+
+[ext_resource type="Script" uid="uid://bey6x6h6fbfwo" path="res://src/objects/props/check/check.gd" id="1_esx6h"]
+[ext_resource type="Texture2D" uid="uid://dcwe0e52wyfbf" path="res://assets/placeholders/b.png" id="6_57w6s"]
+[ext_resource type="Texture2D" uid="uid://dmornbwkw77rr" path="res://assets/placeholders/g.png" id="7_ekf3g"]
+[ext_resource type="Texture2D" uid="uid://dxhtpc07wm8x7" path="res://assets/placeholders/r.png" id="8_r6kbf"]
+[ext_resource type="Texture2D" uid="uid://lb41ccq14a0j" path="res://assets/placeholders/y.png" id="9_sqqoy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f128c"]
+size = Vector2(64, 64)
+
+[node name="check" type="Area2D"]
+script = ExtResource("1_esx6h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_f128c")
+
+[node name="B" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+texture = ExtResource("6_57w6s")
+
+[node name="G" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+texture = ExtResource("7_ekf3g")
+
+[node name="R" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+texture = ExtResource("8_r6kbf")
+
+[node name="Y" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+texture = ExtResource("9_sqqoy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

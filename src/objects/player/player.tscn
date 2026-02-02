@@ -13,7 +13,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r1iw"]
 size = Vector2(62, 62)
 
-[node name="Player" type="AnimatableBody2D" unique_id=563617267 node_paths=PackedStringArray("RayUP", "RayDown", "RayLeft", "RayRight")]
+[node name="Player" type="AnimatableBody2D" node_paths=PackedStringArray("RayUP", "RayDown", "RayLeft", "RayRight")]
 z_index = 1
 physics_material_override = SubResource("PhysicsMaterial_hdm51")
 script = ExtResource("1_bxhu7")
@@ -23,36 +23,38 @@ RayLeft = NodePath("RayLeft")
 RayRight = NodePath("RayRight")
 metadata/_custom_type_script = "uid://cg2x1b33sdavc"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1318600418]
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -50
+limit_top = -50
 position_smoothing_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1377544454]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7nd6e")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1193379640]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1r1iw")
 
-[node name="RayUp" type="RayCast2D" parent="." unique_id=106146338]
+[node name="RayUp" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(0, -40)
 collision_mask = 3
 
-[node name="RayDown" type="RayCast2D" parent="." unique_id=1746537471]
+[node name="RayDown" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(0, 40)
 collision_mask = 3
 
-[node name="RayLeft" type="RayCast2D" parent="." unique_id=1666844285]
+[node name="RayLeft" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(-40, 0)
 collision_mask = 3
 
-[node name="RayRight" type="RayCast2D" parent="." unique_id=1374064437]
+[node name="RayRight" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(40, 0)
 collision_mask = 3
 
-[node name="Label" type="Label" parent="." unique_id=1854671963]
+[node name="Label" type="Label" parent="."]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5

@@ -9,8 +9,35 @@ extends MovableObject2D
 @onready var kiiroi = $Kiiroi
 @onready var midori = $Midori
 
+@export var min_pos := Vector2(INF, INF)
+@export var max_pos := Vector2(-INF, -INF)
+
 func _ready() -> void:
 	label.text = Game.Masks.find_key(equipped_mask)
+
+	var screen_size := Vector2(640, 480)
+	var mapa_size := max_pos - min_pos
+	var cam := get_viewport().get_camera_2d()
+	if cam == null:
+		return
+
+	var margem := 50
+
+	if mapa_size.x <= screen_size.x and mapa_size.y <= screen_size.y:
+		# mapa inteiro cabe na tela → câmera fixa e centralizada
+		var centro := (min_pos + max_pos) * 0.5
+		cam.position = centro
+		cam.limit_left = int(centro.x)
+		cam.limit_right = int(centro.x)
+		cam.limit_top = int(centro.y)
+		cam.limit_bottom = int(centro.y)
+	else:
+		# mapa maior que a tela → câmera com limites
+		cam.limit_left   = int(min_pos.x - margem)
+		cam.limit_right  = int(max_pos.x + margem)
+		cam.limit_top    = int(min_pos.y - margem)
+		cam.limit_bottom = int(max_pos.y + margem)
+
 
 
 func _physics_process(_delta: float) -> void:

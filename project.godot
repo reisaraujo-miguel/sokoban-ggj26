@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="sokoban-ggj26"
 run/main_scene="uid://rbttvjvk7vn3"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
@@ -37,8 +37,8 @@ gdscript/warnings/missing_await=1
 
 [display]
 
-window/size/viewport_width=512
-window/size/viewport_height=448
+window/size/viewport_width=640
+window/size/viewport_height=480
 window/stretch/mode="viewport"
 
 [global_group]

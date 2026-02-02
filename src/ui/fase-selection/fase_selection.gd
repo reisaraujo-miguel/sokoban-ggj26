@@ -1,7 +1,21 @@
 extends Control
 
 const FASE_MANAGER_SCENE: PackedScene = preload("res://src/gerente_fase/gerente_fase.tscn")
+const FASE_BTN_SCENE: PackedScene = preload("res://src/ui/fase-selection/fase_btn.tscn")
+@onready var grid: GridContainer = $MarginContainer/VBoxContainer/GridContainer
 
+func _ready() -> void:
+	var i: int = 1
+	while FileAccess.file_exists("res://data/fases/fase" + str(i) + ".json"):
+		var fase_btn = FASE_BTN_SCENE.instantiate()
+		var label: Label = fase_btn.get_node("Label")
+		label.text = "Fase " + str(i)
+
+		if fase_btn is TextureButton:
+			fase_btn.pressed.connect(switch_to_fase.bind(i))
+
+		grid.add_child(fase_btn)
+		i += 1
 
 func switch_to_fase(fase_number: int) -> void:
 	var fase_manager: FaseManager = FASE_MANAGER_SCENE.instantiate() as FaseManager
@@ -10,14 +24,6 @@ func switch_to_fase(fase_number: int) -> void:
 	get_tree().current_scene.queue_free()
 	get_tree().root.add_child(fase_manager)
 	get_tree().current_scene = fase_manager
-
-
-func _on_fase_1_pressed() -> void:
-	switch_to_fase(1)
-
-
-func _on_fase_2_pressed() -> void:
-	switch_to_fase(2)
 
 
 func _on_button_pressed() -> void:

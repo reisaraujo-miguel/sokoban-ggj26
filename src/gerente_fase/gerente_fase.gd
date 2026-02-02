@@ -2,12 +2,17 @@ extends Node2D
 
 class_name FaseManager
 
-@export var numero_fase: int = 1
+@export var numero_fase: int = 2
+@export var objetivos_totais: int = 0
+@export var objetivos_alcancado: int = 0
 
+var checks_concluidos: Dictionary = {}
 var tile_size: int = 64
 var offset: int = 32
 
 const mask_scene: PackedScene = preload("res://src/objects/props/mask/mask.tscn")
+const pessoa: PackedScene = preload("res://src/objects/mobs/mob.tscn")
+const checks: PackedScene = preload("res://src/objects/props/check/check.tscn")
 
 const scene_map: Dictionary = {
 	"J": { "scene": preload("res://src/objects/player/player.tscn") },
@@ -18,11 +23,20 @@ const scene_map: Dictionary = {
 	"MB": { "scene": mask_scene, "color": Game.MaskColor.BLUE },
 	"MY": { "scene": mask_scene, "color": Game.MaskColor.YELLOW },
 	"S": { "scene": preload("res://src/objects/props/saida/saida.tscn"), "saida": true },
+	"PR": { "scene": pessoa, "mask_color": Game.MaskColor.RED },
+	"PG": { "scene": pessoa, "mask_color": Game.MaskColor.GREEN },
+	"PB": { "scene": pessoa, "mask_color": Game.MaskColor.BLUE },
+	"PY": { "scene": pessoa, "mask_color": Game.MaskColor.YELLOW },
+	"R": { "scene": checks, "space_color": Game.MaskColor.RED },
+	"G": { "scene": checks, "space_color": Game.MaskColor.GREEN },
+	"B": { "scene": checks, "space_color": Game.MaskColor.BLUE },
+	"Y": { "scene": checks, "space_color": Game.MaskColor.YELLOW },
 }
 
 @onready var pause_menu: Control = $ui/PauseMenu
 @onready var success_menu: Control = $ui/SuccessMenu
-
+@onready var painel_mensagem: Control = $ui/PainelMensagem
+@onready var txt = $ui/PainelMensagem/PanelCentro/conteudo/texto
 
 func _ready() -> void:
 	load_level(numero_fase)
@@ -34,6 +48,10 @@ func succes() -> void:
 
 
 func load_level(level_number: int) -> void:
+	checks_concluidos.clear()
+	objetivos_totais = 0
+	objetivos_alcancado = 0
+
 	var data: Dictionary = load_json("res://data/fases/fase" + str(level_number) + ".json")
 	var dados: Variant = data.get("dados")
 
@@ -44,6 +62,8 @@ func load_level(level_number: int) -> void:
 	clear_current_map()
 	@warning_ignore("unsafe_call_argument")
 	spawn_from_map(dados)
+	txt.text = data.get("descricao")
+	painel_mensagem.visible = true
 
 
 func load_next() -> void:
@@ -74,6 +94,9 @@ func load_json(path: String) -> Dictionary:
 
 
 func spawn_from_map(data: Dictionary) -> void:
+	var min_pos := Vector2(INF, INF)
+	var max_pos := Vector2(-INF, -INF)
+	var player: Node2D
 	for key: String in data.keys():
 		if not scene_map.has(key):
 			push_warning("Sem scene mapeada para: " + key)
@@ -86,11 +109,28 @@ func spawn_from_map(data: Dictionary) -> void:
 			var node: Node2D = scene.instantiate()
 			node.position = grid_to_world(grid_pos)
 
+			if node is Player:
+				player = node
 			if config.has("color"):
 				@warning_ignore("unsafe_property_access")
 				node.color = config["color"]
+			if config.has("mask_color"):
+				node.object_color = config["mask_color"]
+			if config.has("space_color"):
+				node.object_color = config["space_color"]
+				if node is Check:
+					objetivos_totais += 1
+					node.objetivo_ativado.connect(_on_check_ativado)
+					node.objetivo_desativado.connect(_on_check_desativado)
+
+			min_pos.x = min(min_pos.x, node.position.x)
+			min_pos.y = min(min_pos.y, node.position.y)
+			max_pos.x = max(max_pos.x, node.position.x)
+			max_pos.y = max(max_pos.y, node.position.y)
 
 			call_deferred("add_child", node)
+	player.min_pos = min_pos
+	player.max_pos = max_pos
 
 
 func grid_to_world(grid_pos: Array) -> Vector2:
@@ -150,3 +190,17 @@ func _on_success_menu_reload_level() -> void:
 	load_level(numero_fase)
 	success_menu.visible = false
 	get_tree().paused = false
+	
+	
+func _on_check_ativado(check: Check) -> void:
+	checks_concluidos[check] = true
+	objetivos_alcancado = checks_concluidos.size()
+
+	if objetivos_alcancado == objetivos_totais:
+		await get_tree().create_timer(1.0).timeout
+		if objetivos_alcancado == objetivos_totais:
+			succes()
+
+func _on_check_desativado(check: Check) -> void:
+	checks_concluidos.erase(check)
+	objetivos_alcancado = checks_concluidos.size()
