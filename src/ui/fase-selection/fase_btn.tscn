@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://di5i0bqht0woh"]
+[gd_scene format=3 uid="uid://di5i0bqht0woh"]
 
 [ext_resource type="Texture2D" uid="uid://kgpk41rq76f5" path="res://assets/Free Industrial Zone Tileset/1 Tiles/IndustrialTile_20.png" id="1_x1gve"]
 
-[node name="Fase1" type="TextureButton"]
+[node name="Fase1" type="TextureButton" unique_id=2139672564]
 custom_minimum_size = Vector2(64, 64)
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -10,7 +10,7 @@ action_mode = 0
 texture_normal = ExtResource("1_x1gve")
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1564920812]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

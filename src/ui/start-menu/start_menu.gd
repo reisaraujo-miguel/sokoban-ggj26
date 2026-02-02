@@ -7,9 +7,11 @@ const CREDITOS_SCENE: PackedScene = preload("res://src/ui/creditos-menu/creditos
 func _on_exit_btn_pressed() -> void:
 	get_tree().quit()
 
+
 func _on_creditos_btn_pressed() -> void:
 	if get_tree().change_scene_to_packed(CREDITOS_SCENE) != OK:
 		push_error("Error changing scene to creditos scene")
+
 
 func _on_play_btn_pressed() -> void:
 	if get_tree().change_scene_to_packed(FASE_SELECTION) != OK:

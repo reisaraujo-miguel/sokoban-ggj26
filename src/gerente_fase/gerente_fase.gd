@@ -6,7 +6,7 @@ class_name FaseManager
 @export var objetivos_totais: int = 0
 @export var objetivos_alcancado: int = 0
 
-var checks_concluidos: Dictionary = {}
+var checks_concluidos: Dictionary = { }
 var tile_size: int = 64
 var offset: int = 32
 
@@ -36,7 +36,8 @@ const scene_map: Dictionary = {
 @onready var pause_menu: Control = $ui/PauseMenu
 @onready var success_menu: Control = $ui/SuccessMenu
 @onready var painel_mensagem: Control = $ui/PainelMensagem
-@onready var txt = $ui/PainelMensagem/PanelCentro/conteudo/texto
+@onready var txt: RichTextLabel = $ui/PainelMensagem/PanelCentro/MarginContainer/conteudo/texto
+
 
 func _ready() -> void:
 	load_level(numero_fase)
@@ -94,9 +95,9 @@ func load_json(path: String) -> Dictionary:
 
 
 func spawn_from_map(data: Dictionary) -> void:
-	var min_pos := Vector2(INF, INF)
-	var max_pos := Vector2(-INF, -INF)
-	var player: Node2D
+	var min_pos: Vector2 = Vector2(INF, INF)
+	var max_pos: Vector2 = Vector2(-INF, -INF)
+	var player: Player
 	for key: String in data.keys():
 		if not scene_map.has(key):
 			push_warning("Sem scene mapeada para: " + key)
@@ -115,13 +116,15 @@ func spawn_from_map(data: Dictionary) -> void:
 				@warning_ignore("unsafe_property_access")
 				node.color = config["color"]
 			if config.has("mask_color"):
-				node.object_color = config["mask_color"]
+				(node as PushableObject).object_color = config["mask_color"]
 			if config.has("space_color"):
-				node.object_color = config["space_color"]
+				(node as Check).object_color = config["space_color"]
 				if node is Check:
 					objetivos_totais += 1
-					node.objetivo_ativado.connect(_on_check_ativado)
-					node.objetivo_desativado.connect(_on_check_desativado)
+					if (node as Check).objetivo_ativado.connect(_on_check_ativado) != OK:
+						push_error("error connecting signal")
+					if (node as Check).objetivo_desativado.connect(_on_check_desativado) != OK:
+						push_error("error connecting signal")
 
 			min_pos.x = min(min_pos.x, node.position.x)
 			min_pos.y = min(min_pos.y, node.position.y)
@@ -190,8 +193,8 @@ func _on_success_menu_reload_level() -> void:
 	load_level(numero_fase)
 	success_menu.visible = false
 	get_tree().paused = false
-	
-	
+
+
 func _on_check_ativado(check: Check) -> void:
 	checks_concluidos[check] = true
 	objetivos_alcancado = checks_concluidos.size()
@@ -201,6 +204,8 @@ func _on_check_ativado(check: Check) -> void:
 		if objetivos_alcancado == objetivos_totais:
 			succes()
 
+
 func _on_check_desativado(check: Check) -> void:
+	@warning_ignore("return_value_discarded")
 	checks_concluidos.erase(check)
 	objetivos_alcancado = checks_concluidos.size()

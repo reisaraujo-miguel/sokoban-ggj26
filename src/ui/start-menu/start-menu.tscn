@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://rbttvjvk7vn3"]
+[gd_scene format=3 uid="uid://rbttvjvk7vn3"]
 
 [ext_resource type="Script" uid="uid://be2m5x22liq8q" path="res://src/ui/start-menu/start_menu.gd" id="1_cbpj0"]
 [ext_resource type="StyleBox" uid="uid://dctct65881qyo" path="res://src/ui/resources/button_normal_style.tres" id="2_5e5hb"]
+[ext_resource type="Texture2D" uid="uid://dren7c36u7h2e" path="res://assets/hammer_sickle.png" id="2_ioqf6"]
 [ext_resource type="StyleBox" uid="uid://csbv4mrlhdog3" path="res://src/ui/resources/button_hover_style.tres" id="3_ioqf6"]
 
-[node name="StartMenu" type="Control"]
+[node name="StartMenu" type="Control" unique_id=1767055642]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cbpj0")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=2077570128]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,39 +23,47 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
-layout_mode = 2
-theme_override_constants/margin_bottom = 64
-
-[node name="Label" type="Label" parent="VBoxContainer2/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2" unique_id=1593040835]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_bottom = 64
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer2/MarginContainer" unique_id=566726003]
+scale = Vector2(3, 3)
+texture = ExtResource("2_ioqf6")
+offset = Vector2(48, 10)
+
+[node name="Label" type="Label" parent="VBoxContainer2/MarginContainer" unique_id=1552031049]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.84, 0.73219997, 0.1932, 1)
 theme_override_font_sizes/font_size = 32
 text = "Sokoban
 Comunista"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="VBoxContainer" parent="VBoxContainer2"]
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer2" unique_id=925621625]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="PlayBtn" type="Button" parent="VBoxContainer2/Buttons"]
+[node name="PlayBtn" type="Button" parent="VBoxContainer2/Buttons" unique_id=1767935233]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("2_5e5hb")
 theme_override_styles/hover = ExtResource("3_ioqf6")
 action_mode = 0
 text = "Play"
 
-[node name="CreditosBtn" type="Button" parent="VBoxContainer2/Buttons"]
+[node name="CreditosBtn" type="Button" parent="VBoxContainer2/Buttons" unique_id=910663862]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("2_5e5hb")
 theme_override_styles/hover = ExtResource("3_ioqf6")
 text = "Creditos"
 
-[node name="ExitBtn" type="Button" parent="VBoxContainer2/Buttons"]
+[node name="ExitBtn" type="Button" parent="VBoxContainer2/Buttons" unique_id=1301040959]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("2_5e5hb")
 theme_override_styles/hover = ExtResource("3_ioqf6")

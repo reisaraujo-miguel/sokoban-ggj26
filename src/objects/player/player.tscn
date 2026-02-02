@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://iyto7vy3t4vu"]
+[gd_scene format=3 uid="uid://iyto7vy3t4vu"]
 
 [ext_resource type="Script" uid="uid://cg2x1b33sdavc" path="res://src/objects/player/player.gd" id="1_bxhu7"]
 [ext_resource type="Texture2D" uid="uid://3sp0ractpnii" path="res://assets/placeholders/player_marx_placeholder.png" id="2_7nd6e"]
@@ -13,7 +13,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r1iw"]
 size = Vector2(62, 62)
 
-[node name="Player" type="AnimatableBody2D" node_paths=PackedStringArray("RayUP", "RayDown", "RayLeft", "RayRight")]
+[node name="Player" type="AnimatableBody2D" unique_id=407511174 node_paths=PackedStringArray("RayUP", "RayDown", "RayLeft", "RayRight")]
 z_index = 1
 physics_material_override = SubResource("PhysicsMaterial_hdm51")
 script = ExtResource("1_bxhu7")
@@ -23,38 +23,38 @@ RayLeft = NodePath("RayLeft")
 RayRight = NodePath("RayRight")
 metadata/_custom_type_script = "uid://cg2x1b33sdavc"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1756506204]
 limit_left = -50
 limit_top = -50
 position_smoothing_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=474224651]
 texture = ExtResource("2_7nd6e")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1739869320]
 shape = SubResource("RectangleShape2D_1r1iw")
 
-[node name="RayUp" type="RayCast2D" parent="."]
+[node name="RayUp" type="RayCast2D" parent="." unique_id=497732243]
 unique_name_in_owner = true
 target_position = Vector2(0, -40)
 collision_mask = 3
 
-[node name="RayDown" type="RayCast2D" parent="."]
+[node name="RayDown" type="RayCast2D" parent="." unique_id=631888035]
 unique_name_in_owner = true
 target_position = Vector2(0, 40)
 collision_mask = 3
 
-[node name="RayLeft" type="RayCast2D" parent="."]
+[node name="RayLeft" type="RayCast2D" parent="." unique_id=423307610]
 unique_name_in_owner = true
 target_position = Vector2(-40, 0)
 collision_mask = 3
 
-[node name="RayRight" type="RayCast2D" parent="."]
+[node name="RayRight" type="RayCast2D" parent="." unique_id=82136990]
 unique_name_in_owner = true
 target_position = Vector2(40, 0)
 collision_mask = 3
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1248394388]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5
@@ -65,29 +65,30 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "no mask"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=251610623]
 stream = ExtResource("3_lbvim")
 autoplay = true
+parameters/looping = true
 
-[node name="Aka" type="Sprite2D" parent="."]
+[node name="Aka" type="Sprite2D" parent="." unique_id=1562258605]
 visible = false
 position = Vector2(1, -17)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_xsaml")
 
-[node name="Ao" type="Sprite2D" parent="."]
+[node name="Ao" type="Sprite2D" parent="." unique_id=502343243]
 visible = false
 position = Vector2(1, -17)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("5_c2cp8")
 
-[node name="Kiiroi" type="Sprite2D" parent="."]
+[node name="Kiiroi" type="Sprite2D" parent="." unique_id=1758725471]
 visible = false
 position = Vector2(1, -17)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("6_nbcr6")
 
-[node name="Midori" type="Sprite2D" parent="."]
+[node name="Midori" type="Sprite2D" parent="." unique_id=1324583800]
 visible = false
 position = Vector2(1, -17)
 scale = Vector2(0.4, 0.4)
