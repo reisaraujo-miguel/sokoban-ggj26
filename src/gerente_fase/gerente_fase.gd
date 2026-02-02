@@ -198,7 +198,8 @@ func _on_check_ativado(check: Check) -> void:
 
 	if objetivos_alcancado == objetivos_totais:
 		await get_tree().create_timer(1.0).timeout
-		succes()
+		if objetivos_alcancado == objetivos_totais:
+			succes()
 
 func _on_check_desativado(check: Check) -> void:
 	checks_concluidos.erase(check)
